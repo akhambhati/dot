@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Have a look at https://github.com/rwxrob/pomo for more.
+
+mkdir "$XDG_CONFIG_HOME" 2>/dev/null
+rm -rf "$XDG_CONFIG_HOME"/pomo 2>/dev/null
+ln -s "$PWD" "$XDG_CONFIG_HOME"/pomo
+ls -l "$XDG_CONFIG_HOME"/pomo

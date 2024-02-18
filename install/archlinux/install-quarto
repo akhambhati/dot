@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+loc=$(curl -o /dev/null -sIw "%{redirect_url}" \
+      'https://github.com/quarto-dev/quarto-cli/releases/latest')
+vers=${loc##*/}
+vers=${vers#v}
+bfn="quarto-$vers-linux-amd64.tar.gz"
+uri=${loc%/tag*}/download/v$vers/$bfn
+echo $uri
+echo ${bfn%-linux*}
+curl -sL "$uri" | tar xvzf - -C $HOME/.local
+mv $HOME/.local/${bfn%-linux*}/bin/* $XDG_BIN_HOME
+mv $HOME/.local/${bfn%-linux*}/share/* $XDG_DATA_HOME
+rm -rf $HOME/.local/${bfn%-linux*}

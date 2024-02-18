@@ -1,0 +1,5 @@
+#!/bin/sh
+mkdir -p "$XDG_CONFIG_HOME"/gh 2>/dev/null
+ln -fs "$PWD/config.yml" "$XDG_CONFIG_HOME"/gh/config.yml
+ls -l "$XDG_CONFIG_HOME"/gh
+echo 'You might need to do gh auth login'

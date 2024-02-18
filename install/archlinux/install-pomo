@@ -1,0 +1,9 @@
+#!/bin/sh
+set -e
+loc=$(curl -o /dev/null -sIw "%{redirect_url}" \
+      'https://github.com/rwxrob/pomo/releases/latest')
+	vers=${loc##*/}
+bfn="pomo-linux-amd64"
+uri=${loc%/tag*}/download/$vers/$bfn
+curl -sL "$uri" -o "$XDG_BIN_HOME/pomo"
+chmod +x "$XDG_BIN_HOME/pomo"

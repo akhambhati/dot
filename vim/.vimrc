@@ -56,7 +56,7 @@ if v:version >= 800
 
 	" better ascii friendly listchars
 	set listchars=space:*,trail:*,nbsp:*,extends:>,precedes:<,tab:\|>
-
+  set list
 	" i hate automatic folding
 	set foldmethod=manual
 	set nofoldenable
@@ -233,14 +233,25 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   call plug#begin('~/.local/share/vim/plugins')
   Plug 'conradirwin/vim-bracketed-paste'
-  Plug 'morhetz/gruvbox'
+  Plug 'sainnhe/gruvbox-material'
   Plug 'vim-pandoc/vim-pandoc'
-  Plug 'rwxrob/vim-pandoc-syntax-simple'
+  Plug 'vim-pandoc/vim-pandoc-syntax'
+  Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+  Plug 'quarto-dev/quarto-vim'
   call plug#end()
 
   " pandoc
   let g:pandoc#formatting#mode = 'h' " A'
   let g:pandoc#formatting#textwidth = 72
+
+  " gruvbox-material
+  if has('termguicolors')
+    set termguicolors
+  endif
+  let g:gruvbox_material_foreground = 'material'
+  let g:gruvbox_material_background = 'hard'
+  let g:gruvbox_material_better_performance = 1
+  colorscheme gruvbox-material
 endif
 
 " format shell on save

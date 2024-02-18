@@ -1,14 +1,33 @@
 #!/bin/sh
 set -e
 
-#ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
-#ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
-#ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
-#ln -sf "$PWD/.profile" "$HOME/.profile"
-#ln -sf "$PWD/.profile" "$HOME/.bash_profile"
-#ln -sf "$PWD/scripts" "$HOME/Scripts"
+# Create XDG Directory Structure
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_STATE_HOME="$HOME"/.local/state
+export XDG_BIN_HOME="$HOME"/.local/bin
 
-for i in vim; do
+mkdir -p "$XDG_CONFIG_HOME"
+mkdir -p "$XDG_CACHE_HOME"
+mkdir -p "$XDG_DATA_HOME"
+mkdir -p "$XDG_STATE_HOME"
+mkdir -p "$XDG_BIN_HOME"
+
+# setup git prompt
+#curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
+
+ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
+ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
+ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
+ln -sf "$PWD/.profile" "$HOME/.profile"
+ln -sf "$PWD/.profile" "$HOME/.bash_profile"
+ln -sf "$PWD/scripts" "$HOME/scripts"
+
+mkdir -p $HOLOCRON
+mkdir -p $HCREPOS
+
+for i in vim gh git tmux lynx pomo pyenv; do
   cd $i && ./setup
   cd -
 done
