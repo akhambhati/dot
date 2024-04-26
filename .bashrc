@@ -145,7 +145,7 @@ __ps1() {
 
 	B=$(git branch --show-current 2>/dev/null)
 	[[ $dir = "$B" ]] && B=.
-	countme="$USER$PROMPT_AT$(hostnamectl hostname):$dir($B)\$ "
+	countme="$USER$PROMPT_AT$(hostname):$dir($B)\$ "
 
 	[[ $B == master || $B == main ]] && b="$r"
 	[[ -n "$B" ]] && B="$g($b$B$g)"
