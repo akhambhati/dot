@@ -17,15 +17,23 @@ mkdir -p "$XDG_BIN_HOME"
 # setup git prompt
 #curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
 
-ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
-ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
-ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
-ln -sf "$PWD/.profile" "$HOME/.profile"
-ln -sf "$PWD/.profile" "$HOME/.bash_profile"
-ln -sf "$PWD/scripts" "$HOME/scripts"
-
-mkdir -p $HOLOCRON
-mkdir -p $HCREPOS
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+	ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
+	ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
+	ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
+	ln -sf "$PWD/.profile" "$HOME/.profile"
+	ln -sf "$PWD/.profile" "$HOME/.bash_profile"
+	ln -sfn "$PWD/scripts" "$HOME/scripts"
+elif [[ "$OSTYPE" == "msys" ]]; then
+	mklink "$PWD/.bashrc" "$HOME/.bashrc"
+	mklink "$PWD/.dircolors" "$HOME/.dircolors"
+	mklink "$PWD/.inputrc" "$HOME/.inputrc"
+	mklink "$PWD/.profile" "$HOME/.profile"
+	mklink "$PWD/.profile" "$HOME/.bash_profile"
+	mklink /d "$PWD/scripts" "$HOME/scripts"
+else
+	echo "Could not determine OSTYPE"
+fi
 
 for i in vim gh git tmux lynx pomo pyenv; do
   cd $i && ./setup
