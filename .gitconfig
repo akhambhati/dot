@@ -1,3 +1,8 @@
 [user]
-name = Ankit Khambhati
-email = akhambhati@gmail.com 
+  name = Ankit Khambhati
+  email = akhambhati@gmail.com
+[core]
+	autocrlf = false
+	fscache = true
+	symlinks = true
+
