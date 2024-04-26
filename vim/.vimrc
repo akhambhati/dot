@@ -233,7 +233,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
   call plug#begin('~/.local/share/vim/plugins')
   Plug 'conradirwin/vim-bracketed-paste'
-  Plug 'sainnhe/gruvbox-material'
+  Plug 'morhetz/gruvbox'
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
   Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
@@ -244,14 +244,11 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   let g:pandoc#formatting#mode = 'h' " A'
   let g:pandoc#formatting#textwidth = 72
 
-  " gruvbox-material
+  " gruvbox
   if has('termguicolors')
     set termguicolors
   endif
-  let g:gruvbox_material_foreground = 'material'
-  let g:gruvbox_material_background = 'hard'
-  let g:gruvbox_material_better_performance = 1
-  colorscheme gruvbox-material
+  colorscheme gruvbox
 endif
 
 " format shell on save

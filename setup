@@ -1,41 +1,36 @@
 #!/bin/sh
 set -e
 
-# Create XDG Directory Structure
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_CACHE_HOME="$HOME"/.cache
-export XDG_DATA_HOME="$HOME"/.local/share
-export XDG_STATE_HOME="$HOME"/.local/state
-export XDG_BIN_HOME="$HOME"/.local/bin
+# setup git prompt
+#curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
 
+# Delete existing symbolic links on windows
+# ln -sf command yields a copy in git-bash
+if [[ "$OSTYPE" == "msys"* ]]; then
+	rm -f "$HOME/.bashrc"
+	rm -f "$HOME/.dircolors"
+	rm -f "$HOME/.inputrc"
+	rm -f "$HOME/.profile"
+	rm -f "$HOME/.bash_profile"
+	rm -rf "$HOME/scripts"
+fi
+
+# Symbolic link/copy essential bash files to home directory
+ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
+ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
+ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
+ln -sf "$PWD/.profile" "$HOME/.profile"
+ln -sf "$PWD/.profile" "$HOME/.bash_profile"
+ln -sf "$PWD/scripts" "$HOME/scripts"
+
+# Create the XDG directory structure
 mkdir -p "$XDG_CONFIG_HOME"
 mkdir -p "$XDG_CACHE_HOME"
 mkdir -p "$XDG_DATA_HOME"
 mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_BIN_HOME"
 
-# setup git prompt
-#curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
-
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-	ln -sf "$PWD/.bashrc" "$HOME/.bashrc"
-	ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
-	ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
-	ln -sf "$PWD/.profile" "$HOME/.profile"
-	ln -sf "$PWD/.profile" "$HOME/.bash_profile"
-	ln -sfn "$PWD/scripts" "$HOME/scripts"
-elif [[ "$OSTYPE" == "msys" ]]; then
-	mklink "$PWD/.bashrc" "$HOME/.bashrc"
-	mklink "$PWD/.dircolors" "$HOME/.dircolors"
-	mklink "$PWD/.inputrc" "$HOME/.inputrc"
-	mklink "$PWD/.profile" "$HOME/.profile"
-	mklink "$PWD/.profile" "$HOME/.bash_profile"
-	mklink /d "$PWD/scripts" "$HOME/scripts"
-else
-	echo "Could not determine OSTYPE"
-fi
-
-for i in vim gh git tmux lynx pomo pyenv; do
+for i in vim gh git tmux lynx pomo; do
   cd $i && ./setup
   cd -
 done

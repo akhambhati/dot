@@ -1,5 +1,10 @@
 #!/bin/sh
+
+if [[ "$OSTYPE" == "msys"* ]]; then
+	rm -f "XDG_CONFIG_HOME/gh/config.yml"
+fi
+
 mkdir -p "$XDG_CONFIG_HOME"/gh 2>/dev/null
-ln -fs "$PWD/config.yml" "$XDG_CONFIG_HOME"/gh/config.yml
+ln -fs "$PWD/config.yml" "$XDG_CONFIG_HOME/gh/config.yml"
 ls -l "$XDG_CONFIG_HOME"/gh
-echo 'You might need to do gh auth login'
+echo 'You might need to do gh auth --with-token $(auth token github)'
