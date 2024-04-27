@@ -14,7 +14,7 @@ deb="${repo}_${ver}_Linux_${arch}.tar.gz"
 url="https://github.com/$user/$repo/releases/download/v${ver}/$deb"
 
 echo $url
-#dir="$(mktemp -d)"
-#echo "$dir"
-#cd "$dir"
-#curl -LO "$url" && sudo dpkg -i ./*.deb
+dir="$(mktemp -d)"
+echo "$dir"
+cd "$dir"
+curl -LO "$url" && sudo dpkg -i ./*.deb
