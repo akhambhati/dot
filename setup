@@ -30,7 +30,7 @@ mkdir -p "$XDG_DATA_HOME"
 mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_BIN_HOME"
 
-for i in vim gh git tmux lynx pomo; do
+for i in vim gh git tmux lynx pomo alacritty; do
   cd $i && ./setup
   cd -
 done

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [[ "$OSTYPE" == "msys"* ]]; then
+	mkdir -p "$HOME/AppData/Roaming/alacritty"
+	ln -sf "$PWD/alacritty-windows.toml" "$HOME/AppData/Roaming/alacritty/alacritty.toml"
+fi
