@@ -209,7 +209,6 @@ for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 export PYENV_ROOT="$HOME/.pyenv"
 pathprepend \
 	"$PYENV_ROOT"/bin
-
-if command -v pyenv > /dev/null 2>&1; then
+if [[ -f $PYENV_ROOT/bin/pyenv ]]; then
 	eval "$(pyenv init -)"
 fi
