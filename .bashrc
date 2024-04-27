@@ -145,7 +145,7 @@ __ps1() {
 
 	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
 
-	PS1="$u[\D{%Y-%m-%d %H:%M:%S}] $h$dir$w$(parse_git_branch)\n$r$P$x "
+	PS1="\n$u[\D{%Y-%m-%d %H:%M:%S}] $h$dir$w$(parse_git_branch)\n$r$P$x "
 }
 
 PROMPT_COMMAND="__ps1"
