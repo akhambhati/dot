@@ -248,6 +248,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   if has('termguicolors')
     set termguicolors
   endif
+  let g:gruvbox_contrast_dark = 'hard'
   colorscheme gruvbox
 endif
 
