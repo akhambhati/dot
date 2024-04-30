@@ -138,14 +138,15 @@ function parse_git_branch {
 }
 
 __ps1() {
-	local P='λ ::' dir="${PWD/$HOME/"~"}" B countme short long double \
+	local P='λ ::' hn="$(hostname -f)" dir="${PWD/$HOME/"~"}" \
+		B countme short long double \
 		r='\[\e[31m\]' g='\[\e[37m\]' h='\[\e[34m\]' \
 		u='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
-		b='\[\e[36m\]' x='\[\e[0m\]' 
+		b='\[\e[36m\]' x='\[\e[0m\]' n='\[\e[32m\]'
 
 	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
 
-	PS1="\n$u[\D{%Y-%m-%d %H:%M:%S}] $h$dir$w$(parse_git_branch)\n$r$P$x "
+	PS1="\n$u[\D{%Y-%m-%d %H:%M:%S}] $b$hn$x:$h$dir$w$(parse_git_branch)\n$r$P$x "
 }
 
 PROMPT_COMMAND="__ps1"
@@ -212,3 +213,4 @@ pathprepend \
 if [[ -f $PYENV_ROOT/bin/pyenv ]]; then
 	eval "$(pyenv init -)"
 fi
+. "$HOME/.cargo/env"
