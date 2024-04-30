@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# Have a look at https://github.com/rwxrob/pomo for more.
-
-pyenv install 3.12
-pyenv global 3.12
