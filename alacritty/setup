@@ -1,6 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 if [[ "$OSTYPE" == "msys"* ]]; then
 	mkdir -p "$HOME/AppData/Roaming/alacritty"
 	ln -sf "$PWD/alacritty-windows.toml" "$HOME/AppData/Roaming/alacritty/alacritty.toml"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	mkdir -p "$XDG_CONFIG_HOME/alacritty"
+	ln -sf "$PWD/alacritty-linux.toml" "$XDG_CONFIG_HOME/alacritty/alacritty.toml"
 fi

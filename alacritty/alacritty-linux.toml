@@ -1,7 +1,3 @@
-[shell]
-program = "C:\\Program Files\\Git\\bin\\bash.exe"
-args = ["--cd-to-home"]
-
 [env]
   TERM = 'xterm-256color'
 
