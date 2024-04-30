@@ -21,6 +21,8 @@ ln -sf "$PWD/.dircolors" "$HOME/.dircolors"
 ln -sf "$PWD/.inputrc" "$HOME/.inputrc"
 ln -sf "$PWD/.profile" "$HOME/.profile"
 ln -sf "$PWD/.profile" "$HOME/.bash_profile"
+ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$PWD/.gitignore" "$HOME/.gitignore"
 ln -snf "$PWD/scripts" "$HOME/scripts"
 
 # Create the XDG directory structure
