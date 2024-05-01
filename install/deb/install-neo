@@ -1,8 +1,4 @@
 #!/bin/sh
-sudo apt install autoconf
-sudo apt install build-essentials
-sudo apt install ncurses-base
-sudo apt-get install libncurses5-dev
 [ -z "$(command -v gh)" ] && echo "gh required" && exit
 [ -z "$(command -v make)" ] && echo "make required (build-essentials)" && exit
 [ -z "$(command -v autoconf)" ] && echo "autoconf required" && exit
