@@ -28,4 +28,11 @@ apt install build-essential \
 	lynx \
 	uidmap \
 	entr \
-	tmux
+	tmux \
+	gh \
+	duck \
+	gpt \
+	autoconf \
+	ncurses-base \
+	libncurses5-dev
+
