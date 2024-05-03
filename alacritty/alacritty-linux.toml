@@ -8,6 +8,13 @@
   italic = { family = "Fira Code", style = "Retina"}
   bold_italic = { family = "Fira Code", style = "SemiBold"}
 
+[window]
+decorations = 'none'
+
+[window.padding]
+x = 7
+y = 0
+
 # Colors (Gruvbox dark)
 # Default colors
 [colors.primary]
