@@ -213,4 +213,12 @@ pathprepend \
 if [[ -f $PYENV_ROOT/bin/pyenv ]]; then
 	eval "$(pyenv init -)"
 fi
+
+# ------------- Cargo / Rust setup --------------
 . "$HOME/.cargo/env"
+
+# ------------- Start into tmux automatically ---
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s main
+fi
+
