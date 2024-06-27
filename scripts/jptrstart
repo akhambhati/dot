@@ -1,0 +1,4 @@
+#!/bin/sh
+
+jptr="${PYENV_ROOT}/versions/jupyterlab/bin/jupyter"
+nohup $jptr lab --no-browser > $HOME/.jupyter/log &
