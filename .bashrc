@@ -172,6 +172,7 @@ alias '?'=duck
 alias '??'=gpt
 alias '???'=google
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
+alias venv='echo $(basename $VIRTUAL_ENV)'
 _have vim && alias vi=vim
 
 # ----------------------------- functions ----------------------------
@@ -212,6 +213,9 @@ pathprepend \
 	"$PYENV_ROOT"/bin
 if [[ -f $PYENV_ROOT/bin/pyenv ]]; then
 	eval "$(pyenv init -)"
+fi
+if [[ -f $PYENV_ROOT/versions/base/bin/activate ]]; then
+	. "${PYENV_ROOT}/versions/base/bin/activate"
 fi
 
 # ------------- Cargo / Rust setup --------------
