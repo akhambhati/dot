@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mkdir -p $HOME/.jupyter
+ln -sf "$PWD/jupyter_lab_config.py" "$HOME/.jupyter/jupyter_lab_config.py"

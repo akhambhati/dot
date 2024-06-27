@@ -20,6 +20,8 @@ pyenv virtualenv 3 jupyterlab
 
 # Install jupyter lab
 "${PYENV_ROOT}/versions/jupyterlab/bin/pip" install jupyterlab
+"${PYENV_ROOT}/versions/jupyterlab/bin/jupyter" lab password
+
 
 # Install poetry for package management
 curl -sSL https://install.python-poetry.org | python3 -
