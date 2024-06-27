@@ -693,7 +693,7 @@ c = get_config()  #noqa
 #  
 #          Takes precedence over allow_origin_pat.
 #  Default: ''
-# c.ServerApp.allow_origin = ''
+c.ServerApp.allow_origin = '*'
 
 ## Use a regular expression for the Access-Control-Allow-Origin header
 #  
@@ -728,7 +728,7 @@ c = get_config()  #noqa
 
 ## Whether to allow the user to run the server as root.
 #  Default: False
-# c.ServerApp.allow_root = False
+c.ServerApp.allow_root = True
 
 ## Allow unauthenticated access to endpoints without authentication rule.
 #  
@@ -907,7 +907,7 @@ c = get_config()  #noqa
 
 ## The IP address the Jupyter server will listen on.
 #  Default: 'localhost'
-# c.ServerApp.ip = 'localhost'
+c.ServerApp.ip = '0.0.0.0'
 
 ## Supply extra arguments that will be passed to Jinja environment.
 #  Default: {}
