@@ -23,3 +23,4 @@ pyenv virtualenv 3 jupyterlab
 
 # Install poetry for package management
 curl -sSL https://install.python-poetry.org | python3 -
+poetry config virtualenvs.create false
