@@ -1,6 +1,0 @@
-#!/bin/bash
-set -e
-curl https://pyenv.run | bash
-source $HOME/.bashrc
-pyenv install 3
-pyenv global 3

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Install pyenv
+curl https://pyenv.run | bash
+source $HOME/.bashrc
+
+# Make sure pyenv is updated
+pyenv update
+
+# Set the global pyenv version to latest python
+pyenv install 3
+pyenv global 3
+
+# Update pip
+"${PYENV_ROOT}/versions/$(pyenv version | sed 's/ .*//')/bin/pip" install --upgrade pip
+
+# Create standard virtual environments
+pyenv virtualenv 3 base
+pyenv virtualenv 3 jupyterlab
+
+# Install jupyter lab
+"${PYENV_ROOT}/versions/jupyterlab/bin/pip" install jupyterlab
+
+# Install poetry for package management
+curl -sSL https://install.python-poetry.org | python3 -
