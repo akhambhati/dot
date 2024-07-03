@@ -34,5 +34,6 @@ apt install build-essential \
 	gpt \
 	autoconf \
 	ncurses-base \
-	libncurses5-dev
+	libncurses5-dev \
+        remmina
 
