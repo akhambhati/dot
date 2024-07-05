@@ -36,6 +36,8 @@ export HOLOCRON="$HOME/Holocron"
 export HCREPOS="$HOLOCRON/holocron-01/volume1/Repos"
 export ZET_COMLINK="$HCREPOS/comlink"
 export ZET_KYBER="$HCREPOS/kyber"
+export GOBIN="$XDG_BIN_HOME"
+export GOPATH="$HOME/.local/go/bin"
 export HELP_BROWSER=lynx
 export TERM="xterm-256color"
 export HRULEWIDTH=73
@@ -83,7 +85,8 @@ pathprepend \
 	"$XDG_BIN_HOME" \
 	"$GHREPOS/cmd-"* \
 	/usr/local/bin \
-	"$SCRIPTS"
+	"$SCRIPTS"\
+	$GOPATH
 
 pathappend \
 	/usr/local/bin \
