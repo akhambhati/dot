@@ -56,7 +56,7 @@ if v:version >= 800
 
 	" better ascii friendly listchars
 	set listchars=space:*,trail:*,nbsp:*,extends:>,precedes:<,tab:\|>
-  set list
+  set nolist
 	" i hate automatic folding
 	set foldmethod=manual
 	set nofoldenable
