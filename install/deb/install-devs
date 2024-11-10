@@ -35,7 +35,8 @@ apt install build-essential \
 	autoconf \
 	ncurses-base \
 	libncurses5-dev \
-        remmina \
-        alacritty \
-        vim
-
+	remmina \
+	alacritty \
+	vim \
+	mc \
+	universal-ctags
