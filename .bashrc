@@ -25,7 +25,7 @@ export XDG_STATE_HOME="$HOME"/.local/state
 export XDG_BIN_HOME="$HOME"/.local/bin
 
 export LANG=en_US.UTF-8 # assuming apt install language-pack-en done
-export USER="${USER:-$(whoami)}"
+export USER="akhambhati" #"${USER:-$(whoami)}"
 export GITUSER="$USER"
 export REPOS="$HOME/repos"
 export GHREPOS="$REPOS/github.com/$GITUSER"

@@ -237,6 +237,7 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
   Plug 'vim-pandoc/vim-pandoc'
   Plug 'vim-pandoc/vim-pandoc-syntax'
   Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
   Plug 'quarto-dev/quarto-vim'
   call plug#end()
 
@@ -271,8 +272,6 @@ endif
 " s,/foo,/bar,g
 "autocmd vimleavepre *.md !perl -p -i -e 's,\[([^\]]+)\]\(\),[\1](https://duck.com/lite?kd=-1&kp=-1&q=\1),g' %
 
-autocmd BufWritePost *.md silent !toemoji %
-autocmd BufWritePost *.md silent !toduck %
 
 " fill in anything beginning with @ with a link to twitch to it
 "autocmd vimleavepre *.md !perl -p -i -e 's, @(\w+), [\\@\1](https://twitch.tv/\1),g' %
@@ -316,7 +315,15 @@ au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
 au bufnewfile,bufRead *.go set spell spellcapcheck=0
 au bufnewfile,bufRead commands.yaml set spell
 au bufnewfile,bufRead *.txt set spell
-au bufnewfile,bufread *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=81 smarttab expandtab
+au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=81 smarttab expandtab
+
+" Zettelkasten specific configs
+au BufNewFile,BufRead $VAULT/*.md setlocal filetype=pandoc
+au bufnewfile,bufRead $VAULT* setlocal path+=$VAULT/**
+set suffixesadd+=.md
+" Go to index of notes and set working directory to my notes
+nnoremap <leader>ni :e $VAULT/index.md<CR>:cd $VAULT<CR>
+
 
 "fix bork bash detection
 if has("eval")  " vim-tiny detection
@@ -374,9 +381,4 @@ noremap <C-j> <C-d>
 noremap <C-k> <C-b>
 
 " Set TMUX window name to name of file
-"au fileopened * !tmux rename-window TESTING
-
-" read personal/private vim configuration (keep last to override)
-set rtp^=~/.vimpersonal
-set rtp^=~/.vimprivate
-set rtp^=~/.vimwork
+" au fileopened * !tmux rename-window TESTING
