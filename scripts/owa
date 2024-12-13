@@ -1,0 +1,12 @@
+#!/bin/bash
+
+url=$1 
+regex_pattern="^https?://outlook.office.com/mail/inbox/id/([^/]+)"
+dlink_pattern="https://outlook.office.com/mail/deeplink/read/"
+
+if [[ "$url" =~ $regex_pattern ]]; then
+    domain=${BASH_REMATCH[1]}
+    echo "$dlink_pattern$domain"
+else
+    echo "Invalid URL"
+fi
