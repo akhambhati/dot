@@ -40,9 +40,9 @@ export GOPATH="$HOME/.local/go/bin"
 export HELP_BROWSER=lynx
 export TERM="xterm-256color"
 export HRULEWIDTH=73
-export EDITOR=vi
-export VISUAL=vi
-export EDITOR_PREFIX=vi
+export EDITOR=vim
+export VISUAL=vim
+export EDITOR_PREFIX=vim
 
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
 
@@ -209,7 +209,6 @@ owncomp=(
 for i in "${owncomp[@]}"; do complete -C "$i" "$i"; done
 
 # ------------- Python / pyenv setup ------------
-
 export PYENV_ROOT="$HOME/.pyenv"
 pathprepend \
 	"$PYENV_ROOT"/bin
