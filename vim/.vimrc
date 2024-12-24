@@ -316,6 +316,7 @@ au bufnewfile,bufRead *.go set spell spellcapcheck=0
 au bufnewfile,bufRead commands.yaml set spell
 au bufnewfile,bufRead *.txt set spell
 au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=81 smarttab expandtab
+au bufnewfile,bufRead *.tsv set autoindent noexpandtab copyindent preserveindent softtabstop=0 tabstop=4 shiftwidth=4
 
 " Zettelkasten specific configs
 au BufNewFile,BufRead $VAULT/*.md setlocal filetype=pandoc
