@@ -39,4 +39,5 @@ apt install build-essential \
 	alacritty \
 	vim \
 	mc \
-	universal-ctags
+	universal-ctags \
+	ripgrep
