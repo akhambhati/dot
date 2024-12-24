@@ -40,9 +40,9 @@ export GOPATH="$HOME/.local/go/bin"
 export HELP_BROWSER=lynx
 export TERM="xterm-256color"
 export HRULEWIDTH=73
-export EDITOR=vim
-export VISUAL=vim
-export EDITOR_PREFIX=vim
+export EDITOR=vi
+export VISUAL=vi
+export EDITOR_PREFIX=vi
 
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
 
@@ -222,8 +222,10 @@ fi
 # ------------- Cargo / Rust setup --------------
 . "$HOME/.cargo/env"
 
+# ------------- Install FZF ---
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # ------------- Start into tmux automatically ---
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux new-session -A -s main
 fi
-
