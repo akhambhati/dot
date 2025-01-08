@@ -34,7 +34,7 @@ export SCRIPTS="$DOTFILES/scripts"
 export SNIPPETS="$DOTFILES/snippets"
 export HOLOCRON="$HOME/Holocron"
 export HCREPOS="$HOLOCRON/holocron-01/volume1/repos"
-export CORTEX="$HCREPOS/cortex"
+export CX_PATH="$HCREPOS/cortex"
 export GOBIN="$XDG_BIN_HOME"
 export GOPATH="$HOME/.local/go/bin"
 export HELP_BROWSER=lynx
@@ -173,8 +173,10 @@ alias path='echo -e ${PATH//:/\\n}'
 alias '?'=duck
 alias '??'=gpt
 alias '???'=google
+alias bat=batcat
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias venv='echo $(basename $VIRTUAL_ENV)'
+alias fx=firefox
 _have vim && alias vi=vim
 
 # ----------------------------- functions ----------------------------
