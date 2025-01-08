@@ -319,11 +319,7 @@ au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 au bufnewfile,bufRead *.tsv set autoindent noexpandtab copyindent preserveindent softtabstop=0 tabstop=4 shiftwidth=4
 
 " Zettelkasten specific configs
-au BufNewFile,BufRead $VAULT/*.md setlocal filetype=pandoc
-au bufnewfile,bufRead $VAULT* setlocal path+=$VAULT/**
-set suffixesadd+=.md
-" Go to index of notes and set working directory to my notes
-nnoremap <leader>ni :e $VAULT/index.md<CR>:cd $VAULT<CR>
+nnoremap <leader>cx :e $CORTEX/dex/nodes.tsv<CR>:cd $CORTEX<CR>
 
 
 "fix bork bash detection
