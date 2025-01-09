@@ -1,0 +1,4 @@
+#!/bin/bash -i
+
+text="\\n\\n\\n## $($HOME/scripts/isosec)\\n$@"
+cx.nodeEdit _0000 $text
