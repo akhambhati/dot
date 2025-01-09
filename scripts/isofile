@@ -1,0 +1,6 @@
+#!/bin/bash -i
+
+
+ctime=$(date -u +"%Y%m%dT%H%M%SZ")
+fn="$ctime-$1"
+mv $1 $fn
