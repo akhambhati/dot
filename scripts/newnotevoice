@@ -1,0 +1,5 @@
+#!/bin/bash -i
+result=$(termux-speech-to-text);
+if [[ ! -z $result ]]; then
+	hlog $result
+fi
