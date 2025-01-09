@@ -1,5 +1,5 @@
 #!/bin/bash -i
-result=$(termux-speech-to-text);
+result=$(termux-dialog speech -t "Cortex: Inbox - Note" | jq -r '.text');
 if [[ ! -z $result ]]; then
 	hlog $result
 fi
