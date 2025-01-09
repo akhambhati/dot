@@ -1,5 +1,5 @@
 #!/bin/bash -i
 result=$(termux-dialog speech -t "Cortex: Inbox - Task" | jq -r '.text');
 if [[ ! -z $result ]]; then
-	hlog "[ ] $result"
+	htask $result
 fi
