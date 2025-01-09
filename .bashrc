@@ -202,6 +202,8 @@ clone() {
 	cd "$name"
 } && export -f clone
 
+_source_if $GHREPOS/cortex-cli/lib/cx-utils
+
 # ------------- source external dependencies / completion ------------
 
 owncomp=(
