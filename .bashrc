@@ -1,4 +1,4 @@
-#!bash
+#!/bin/bash
 # shellcheck disable=SC1090
 
 case $- in
