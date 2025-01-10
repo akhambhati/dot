@@ -6,3 +6,6 @@
 	fscache = true
 	symlinks = true
 
+[safe]
+	directory = /data/data/com.termux/files/home/Holocron/repos/*
+	directory = /data/data/com.termux/files/home/Holocron/repos/*
