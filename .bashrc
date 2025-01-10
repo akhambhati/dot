@@ -27,14 +27,14 @@ export XDG_BIN_HOME="$HOME"/.local/bin
 export LANG=en_US.UTF-8 # assuming apt install language-pack-en done
 export USER="akhambhati" #"${USER:-$(whoami)}"
 export GITUSER="$USER"
-export REPOS="$HOME/repos"
+export HOLOCRON="$HOME/Holocron"
+export REPOS="$HOLOCRON/repos"
 export GHREPOS="$REPOS/github.com/$GITUSER"
+export LCREPOS="$REPOS/localhost/$GITUSER"
 export DOTFILES="$GHREPOS/dot"
 export SCRIPTS="$DOTFILES/scripts"
-export SNIPPETS="$DOTFILES/snippets"
-export HOLOCRON="$HOME/Holocron"
 export HCREPOS="$HOLOCRON/holocron-01/volume1/repos"
-export CX_PATH="$HCREPOS/cortex"
+export CX_PATH="$LCREPOS/cortex"
 export GOBIN="$XDG_BIN_HOME"
 export GOPATH="$HOME/.local/go/bin"
 export HELP_BROWSER=lynx
@@ -99,7 +99,7 @@ pathappend \
 
 # ------------------------------ cdpath ------------------------------
 
-export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS:$HOME"
+export CDPATH=".:$LCREPOS::$GHREPOS:$DOTFILES:$REPOS:$HOME"
 
 # ------------------------ bash shell options ------------------------
 
