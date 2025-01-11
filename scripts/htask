@@ -1,3 +1,2 @@
-#!/bin/bash -i
-
-hlog "[] $@"
+#!/bin/bash
+. hlog "[] $@"
