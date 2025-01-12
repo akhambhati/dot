@@ -1,0 +1,83 @@
+#!/bin/bash -i
+
+text="Project: $@\
+\\n\\n\\n\
+## Purpose\
+\\n\
+Why do you need to do this? Clearly and specifically.\
+\\n\
+1. Does it help define success? Whats the 'win'?\
+\\n\
+2. Does it create criteria for you to make decisions?\
+\\n\
+3. Does it clarify utilization and alignment of resources?\
+\\n\
+4. Does it provide motivation and stimulate interest?\
+\\n\
+5. Does it provide clarity and focus? What are we trying to accomplish here?\
+\\n\
+6. Does it offer clear array of options for pursuing the project?
+\\n\
+\\n\
+## Principles\
+\\n\
+What are your standards and expectations for the project?\
+\\n\
+Complete the sentence: I would give others totally \
+free rein to do this *as long as they (------)*.\
+\\n\
+How do you want to work with others? What behaviors are \
+in-bounds and out-of-bounds?\
+\\n\
+\\n\
+## Vision/Outcome\
+\\n\
+What does success look, sound, feel like? \
+Wouldn't it be great if (----)? \
+Tangible and measurable. What will the project look like \
+once it is done? Can be a simple statement or a detailed \
+specification.\
+\\n\
+\\n\
+## Brainstorming\
+\\n\
+How do we go about the project? May be internal or external. \
+Capture your ideas in a mindmap. High flexibility. \
+Grab it quickly. Possibly in the log and link it. \
+Go for quantity not quality.\
+\\n\
+\\n\
+## Organizing\
+\\n\
+Identify structure in the brainstormed map. Factor out \
+components, subcomponents, sequences. Tools include Gantt
+Charts, etc.\
+\\n\
+* Identify significant pieces.\
+\\n\
+*	Sort by components, sequences, priority.\
+\\n\
+* Detail the pieces as required.\
+\\n\
+* What's the plan?\
+\\n\
+\\n\
+## Next Actions\
+\\n\
+If project is actionable, a next step must be determined. \
+Otherwise, the project is a someday/maybe.\
+\\n\
+1. What are the actions for each moving part? \
+Determine fronts that can be moved on in parallel and \
+assign next actions for each.\
+\\n\
+2. If more planning needed, then next action is a \
+process step. Importance of clarifying next action \
+no matter how mundane.\
+\\n\
+3. If next action is someone else's, then let that \
+person accept resppnsibility for completing action. \
+Add it to Waiting For list."
+
+
+cx.nodeEdit new ${text[@]}
