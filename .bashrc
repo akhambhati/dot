@@ -1,6 +1,11 @@
 #!/bin/bash
 # shellcheck disable=SC1090
 
+case $- in
+ *i*) ;;
+ *) return ;;
+esac
+
 # Key Bindings
 bind -x '"\C-l":clear'
 
