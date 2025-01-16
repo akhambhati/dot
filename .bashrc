@@ -37,24 +37,7 @@ export EDITOR_PREFIX=vi
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
 _source_if $GHREPOS/cortex-cli/lib/cx-utils
 
-# ---------------------- if interactive shell ---------------------
-[[ $- != *i* ]] && return
-
-# ---------------------- key bindings ---------------------
-bind -x '"\C-l":clear'
-
-# ----------------------------- dircolors ----------------------------
-
-if _have dircolors; then
-	if [[ -r "$HOME/.dircolors" ]]; then
-		eval "$(dircolors -b "$HOME/.dircolors")"
-	else
-		eval "$(dircolors -b)"
-	fi
-fi
-
 # ------------------------------- path -------------------------------
-
 pathappend() {
 	declare arg
 	for arg in "$@"; do
@@ -110,6 +93,23 @@ shopt -s extglob
 
 #shopt -s nullglob # bug kills completion for some
 #set -o noclobber
+
+
+# ---------------------- if interactive shell ---------------------
+[[ $- != *i* ]] && return
+
+# ---------------------- key bindings ---------------------
+bind -x '"\C-l":clear'
+
+# ----------------------------- dircolors ----------------------------
+
+if _have dircolors; then
+	if [[ -r "$HOME/.dircolors" ]]; then
+		eval "$(dircolors -b "$HOME/.dircolors")"
+	else
+		eval "$(dircolors -b)"
+	fi
+fi
 
 # -------------------------- stty annoyances -------------------------
 
