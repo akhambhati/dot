@@ -1,22 +1,13 @@
 #!/bin/bash
 # shellcheck disable=SC1090
 
-case $- in
- *i*) ;;
- *) return ;;
-esac
-
-# Key Bindings
-bind -x '"\C-l":clear'
-
 # ---------------------- local utility functions ---------------------
-
 _have() { type "$1" &>/dev/null; }
 _source_if() { [[ -r "$1" ]] && source "$1"; }
 
+#
 # ----------------------- environment variables ----------------------
 #                           (also see envx)
-
 # Create XDG Directory Structure
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CACHE_HOME="$HOME"/.cache
@@ -43,8 +34,14 @@ export HRULEWIDTH=73
 export EDITOR=vi
 export VISUAL=vi
 export EDITOR_PREFIX=vi
-
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
+_source_if $GHREPOS/cortex-cli/lib/cx-utils
+
+# ---------------------- if interactive shell ---------------------
+[[ $- != *i* ]] && return
+
+# ---------------------- key bindings ---------------------
+bind -x '"\C-l":clear'
 
 # ----------------------------- dircolors ----------------------------
 
@@ -201,8 +198,6 @@ clone() {
 	gh repo clone "$user/$name" -- --recurse-submodule
 	cd "$name"
 } && export -f clone
-
-_source_if $GHREPOS/cortex-cli/lib/cx-utils
 
 # ------------- source external dependencies / completion ------------
 
