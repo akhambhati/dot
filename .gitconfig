@@ -10,3 +10,5 @@
 	directory = /data/data/com.termux/files/home/Holocron/repos/*
 	directory = /data/data/com.termux/files/home/Holocron/repos/*
 	directory = /data/data/com.termux/files/home/Holocron/storage/holocron-01/volume1/repos/*
+[init]
+	defaultBranch = main
