@@ -66,8 +66,8 @@ endif
 match IncSearch '\s\+$'
 
 " enough for line numbers + gutter within 80 standard
-set textwidth=72
-set colorcolumn=73
+set textwidth=79
+set colorcolumn=80
 
 " disable relative line numbers, remove no to sample it
 set norelativenumber
