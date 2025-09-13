@@ -221,6 +221,11 @@ fi
 # ------------- Cargo / Rust setup --------------
 . "$HOME/.cargo/env"
 
+# -------------  --------------
+export FREESURFER_HOME="/usr/local/freesurfer/8.0.0"
+. $FREESURFER_HOME/SetUpFreeSurfer.sh
+export SUBJECTS_DIR="$HOLOCRON/data/imaging"
+
 # ------------- Install FZF ---
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
