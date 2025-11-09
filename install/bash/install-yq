@@ -1,0 +1,3 @@
+#!/bin/sh
+sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O $XDG_BIN_HOME/yq &&\
+sudo chmod +x $XDG_BIN_HOME/yq
