@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+user=cli
+name=cli
+name2=gh
+target=$HOME/.local
+
+arch=$(uname -m)
+[ "$arch" = x86_64 ] && arch=amd64
+
+latest="https://api.github.com/repos/$user/$name/releases/latest"
+ver=$(curl -sS "$latest" | jq -r .zipball_url) && test -n "$ver"
+ver=${ver##*/}
+ver=${ver#v}
+exe="${name2}_${ver}_linux_${arch}"
+url="https://github.com/$user/$name/releases/download/v${ver}/$exe.tar.gz"
+mkdir -p "$target" || true
+cd "$target"
+curl -fsSL "$url" | tar -xvzf - -C "$target" 
+cp -rv "$target/$exe"/* "$target"
+rm -r "$target/$exe"
+rm -r "$target/LICENSE"
