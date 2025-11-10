@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# setup git prompt
-#curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
-
 # Delete existing symbolic links on windows
 # ln -sf command yields a copy in git-bash
 if [[ "$OSTYPE" == "msys"* ]]; then
@@ -32,7 +29,11 @@ mkdir -p "$XDG_DATA_HOME"
 mkdir -p "$XDG_STATE_HOME"
 mkdir -p "$XDG_BIN_HOME"
 
-for i in vim gh git tmux lynx pomo alacritty jupyter; do
+# setup git prompt
+mkdir -p "$XDG_CONFIG_HOME"/bash
+curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh >"$XDG_CONFIG_HOME"/bash/git-prompt.sh
+
+for i in vim gh git tmux lynx jupyter; do
   cd $i && ./setup
   cd -
 done
