@@ -319,7 +319,7 @@ au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 au bufnewfile,bufRead *.tsv set autoindent noexpandtab copyindent preserveindent softtabstop=0 tabstop=4 shiftwidth=4
 
 " Zettelkasten specific configs
-nnoremap <leader>cx :e $CORTEX/dex/nodes.tsv<CR>:cd $CORTEX<CR>
+noremap <leader>l :r! cortex pick link 2>/dev/null<CR>
 
 
 "fix bork bash detection
