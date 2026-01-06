@@ -170,7 +170,6 @@ alias path='echo -e ${PATH//:/\\n}'
 alias '?'=duck
 alias '??'=gpt
 alias '???'=google
-alias bat=batcat
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias venv='echo $(basename $VIRTUAL_ENV)'
 alias fx=firefox
