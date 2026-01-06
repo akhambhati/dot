@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	mkdir -p "$XDG_CONFIG_HOME/sway"
+	ln -sf "$PWD/config" "$XDG_CONFIG_HOME/sway/config"
+fi
