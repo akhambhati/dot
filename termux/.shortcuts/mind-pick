@@ -1,0 +1,6 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#set -euo pipefail
+
+. "$HOME/.bashrc"
+
+bash -l mind pick edit

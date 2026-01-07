@@ -1,0 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/bash
+#set -euo pipefail
+
+. "$HOME/.bashrc"
+
+result=$(termux-dialog speech -t "Hive: Captain's Log" | jq -r '.text');
+if [[ ! -z $result ]]; then
+  bash mind log "$result"
+fi
