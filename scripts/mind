@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Mind-CLI: lightweight workflow layer over Cortex-CLI
+# Keep this thin: dispatch + shared helpers.
+
+HIVE_PATH="$HOLOCRON/hive"
+HIVE_NODE_LOG="000000"
+
+mind_msg() { printf "mind: %s\n" "$*" >&1; }
+mind_err() { printf "mind: %s\n" "$*" >&2; }
+mind_die() { mind_err "$*"; exit 1; }
+mind_stamp() { date +"%Y-%m-%d %H:%M:%S %z"; }
+
+usage() {
+  cat <<EOF
+Usage:
+  mind init
+  mind log <message...>
+  mind log --edit
+  mind <cortex-subcommand...>   (passthrough to cortex --root "\$HIVE_PATH")
+EOF
+}
+
+main() {
+	command -v cortex >/dev/null 2>&1 || mind_die "cortex not found on PATH"
+
+	(( $# > 0 )) || { usage; exit 2; }
+  local cmd="$1"; shift
+
+  case "$cmd" in
+    init)
+			if [[ ! -d "$HIVE_PATH/.cortex" ]]; then
+				hpath="$(cortex init $HIVE_PATH --title "Hive Mind")" 
+				[[ "$HIVE_PATH" == "$hpath" ]] && mind_msg "created Hive Mind at '$hpath'"
+			else
+				mind_msg "Hive Mind already exists at '$HIVE_PATH'"
+			fi
+		
+			if [[ ! -d "$HIVE_PATH/$HIVE_NODE_LOG" ]]; then
+				id="$(cortex --root $HIVE_PATH node new --title "Captain's Log" --id "$HIVE_NODE_LOG")"
+				[[ -n "$id" ]] && mind_msg "created Captain's Log node ($HIVE_NODE_LOG)"
+			else
+				mind_msg "Captain's Log already exists ($HIVE_NODE_LOG)"
+			fi
+			;;
+		log)
+      (( $# > 0 )) || mind_die "log requires a message"
+			msg="\n[$(mind_stamp)]: $*"
+			cortex --root "$HIVE_PATH" node edit "$HIVE_NODE_LOG" README.md "$msg"
+			;;
+		*)
+			cortex --root "$HIVE_PATH" "$cmd" "$@"
+			;;
+  esac
+}
+
+main "$@"
