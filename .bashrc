@@ -61,6 +61,7 @@ pathprepend() {
 
 # remember last arg will be first in path
 pathprepend \
+	"$GHREPOS/cortex-cli/bin" \
 	"$XDG_BIN_HOME" \
 	"$GHREPOS/cmd-"* \
 	/usr/local/bin \
