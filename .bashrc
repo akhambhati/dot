@@ -228,7 +228,7 @@ export FREESURFER_HOME="/usr/local/freesurfer/8.0.0"
 export SUBJECTS_DIR="$HOLOCRON/data/imaging"
 
 # ------------- Install FZF ---
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . "$HOME/.fzf.bash"
 
 # ------------- Start into tmux automatically ---
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
