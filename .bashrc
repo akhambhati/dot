@@ -168,6 +168,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lhrta'
 alias mm='mind'
 alias ml='mind log'
+alias mp='mind pick edit'
 alias path='echo -e ${PATH//:/\\n}'
 alias '?'=duck
 alias '??'=gpt
