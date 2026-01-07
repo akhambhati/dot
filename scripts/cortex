@@ -1,0 +1,2 @@
+REAL="$HOME/Holocron/repos/github.com/akhambhati/cortex-cli/bin/cortex"
+exec bash "$REAL" "$@"
