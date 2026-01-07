@@ -165,8 +165,8 @@ unalias -a
 
 # ls
 alias ls='ls --color=auto'
-alias ll='ls -la'
-alias la='ls -lathr'
+alias ll='ls -lhrta'
+alias lg='ls -lathr'
 alias path='echo -e ${PATH//:/\\n}'
 alias '?'=duck
 alias '??'=gpt
