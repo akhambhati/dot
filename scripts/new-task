@@ -1,8 +1,0 @@
-#!/bin/bash
-
-. "$HOME/.bashrc"
-
-result=$(termux-dialog -t "Cortex: Inbox - Task" | jq -r '.text');
-if [[ ! -z $result ]]; then
-	. htask $result
-fi

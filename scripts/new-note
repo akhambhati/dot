@@ -1,8 +1,0 @@
-#!/bin/bash -i
-
-. "$HOME/.bashrc"
-
-result=$(termux-dialog -t "Cortex: Inbox - Note" | jq -r '.text');
-if [[ ! -z $result ]]; then
-	. hlog $result
-fi
