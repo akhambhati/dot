@@ -6,4 +6,5 @@
 result=$(termux-dialog speech -t "Hive: Captain's Log" | jq -r '.text');
 if [[ ! -z $result ]]; then
   bash mind log "$result"
+	termux-toast "Logged to Captain’s Log"
 fi
