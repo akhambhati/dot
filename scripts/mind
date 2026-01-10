@@ -46,7 +46,7 @@ main() {
 			;;
 		log)
       (( $# > 0 )) || mind_die "log requires a message"
-			msg="\n[$(mind_stamp)]: $*"
+			msg="\n- [$(mind_stamp)]: $*\n"
 			cortex --root "$HIVE_PATH" node edit "$HIVE_NODE_LOG" README.md "$msg"
 			;;
 		*)
