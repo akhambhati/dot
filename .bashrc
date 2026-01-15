@@ -176,7 +176,7 @@ alias '??'=gpt
 alias '???'=google
 alias batt='cat /sys/class/power_supply/BAT0/capacity'
 alias venv='echo $(basename $VIRTUAL_ENV)'
-alias fx=firefox
+alias fx='firefox'
 _have vim && alias vi=vim
 
 # ----------------------------- functions ----------------------------
