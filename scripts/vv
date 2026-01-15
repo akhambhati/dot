@@ -1,0 +1,1 @@
+vim $(fzf --preview='bat --color=always --theme=gruvbox-dark --style=numbers {}' --preview-window=top,75%)
