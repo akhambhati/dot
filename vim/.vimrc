@@ -319,7 +319,80 @@ au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 au bufnewfile,bufRead *.tsv set autoindent noexpandtab copyindent preserveindent softtabstop=0 tabstop=4 shiftwidth=4
 
 " Zettelkasten specific configs
-noremap <leader>l :r! cortex pick link 2>/dev/null<CR>
+" Visual mode: wrap the selected text as a Markdown link to a Cortex node.
+" Usage:
+"   1) Visually select text
+"   2) Press <leader>l
+"   3) Pick a node in cortex picker
+"   4) Selection becomes: [selected text](TARGET)
+xnoremap <leader>l :<C-u>call CortexLinkVisual()<CR>
+
+" --- Helpers ---------------------------------------------------------------
+
+" Save a register + its type so we can restore it later.
+function! s:SaveReg(name) abort
+  return {'name': a:name, 'value': getreg(a:name), 'type': getregtype(a:name)}
+endfunction
+
+" Restore a previously saved register.
+function! s:RestoreReg(saved) abort
+  call setreg(a:saved.name, a:saved.value, a:saved.type)
+endfunction
+
+" Get the current visual selection as text without clobbering user registers.
+" Uses register z as a temporary scratch register.
+function! s:GetVisualSelection() abort
+  let l:save_z = s:SaveReg('z')
+
+  " Reselect visual area, yank into register z
+  normal! gv"zy
+  let l:text = getreg('z')
+
+  call s:RestoreReg(l:save_z)
+  return l:text
+endfunction
+
+" Run cortex picker and return the chosen link target (trim trailing newlines).
+function! s:CortexPickTarget() abort
+  let l:target = system('cortex pick link 2>/dev/null')
+  return substitute(l:target, '\n\+$', '', '')
+endfunction
+
+" --- Main ------------------------------------------------------------------
+
+function! CortexLinkVisual() abort
+  " Save unnamed register too (yanking selection often changes it in practice
+  " depending on settings/plugins; restoring prevents surprises).
+  let l:save_unnamed = s:SaveReg('"')
+
+  let l:text   = s:GetVisualSelection()
+  let l:target = s:CortexPickTarget()
+
+  call s:RestoreReg(l:save_unnamed)
+
+  " If the picker was cancelled or returned nothing, do nothing.
+  if empty(l:target)
+    return
+  endif
+
+  " Replace the selection with a Markdown link.
+  " - gv reselects the same visual region
+  " - c changes it (delete selection and enter insert)
+  " - we insert the link and exit insert mode
+  let l:md = '[' . l:text . '](' . l:target . ')'
+  execute "normal! gv"
+  execute "normal! c" . l:md . "\<Esc>"
+endfunction
+
+
+
+
+
+
+
+
+
+
 
 
 "fix bork bash detection
