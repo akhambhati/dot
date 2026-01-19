@@ -265,17 +265,6 @@ endfun
 autocmd FileType sh autocmd BufWritePre <buffer> call s:FormatShell()
 endif
 
-"autocmd vimleavepre *.md !perl -p -i -e 's,(?<!\[)my `(\w+)` (package|module|repo|command|utility),[my `\1` \2](https://gitlab.com/rwxrob/\1),g' %
-
-" fill in empty markdown links with duck.com search
-" [some thing]() -> [some thing](https://duck.com/lite?kae=t&q=some thing)
-" s,/foo,/bar,g
-"autocmd vimleavepre *.md !perl -p -i -e 's,\[([^\]]+)\]\(\),[\1](https://duck.com/lite?kd=-1&kp=-1&q=\1),g' %
-
-
-" fill in anything beginning with @ with a link to twitch to it
-"autocmd vimleavepre *.md !perl -p -i -e 's, @(\w+), [\\@\1](https://twitch.tv/\1),g' %
-
 " make Y consistent with D and C (yank til end)
 map Y y$
 
@@ -289,31 +278,13 @@ nnoremap <C-L> :nohl<CR><C-L>
 set omnifunc=syntaxcomplete#Complete
 
 " force some files to be specific file type
-au bufnewfile,bufRead $SNIPPETS/md/* set ft=pandoc
-au bufnewfile,bufRead $SNIPPETS/sh/* set ft=sh
-au bufnewfile,bufRead $SNIPPETS/bash/* set ft=bash
-au bufnewfile,bufRead $SNIPPETS/go/* set ft=go
-au bufnewfile,bufRead $SNIPPETS/c/* set ft=c
-au bufnewfile,bufRead $SNIPPETS/html/* set ft=html
-au bufnewfile,bufRead $SNIPPETS/css/* set ft=css
-au bufnewfile,bufRead $SNIPPETS/js/* set ft=javascript
-au bufnewfile,bufRead $SNIPPETS/python/* set ft=python
-au bufnewfile,bufRead $SNIPPETS/perl/* set ft=perl
-au bufnewfile,bufRead user-data set ft=yaml
-au bufnewfile,bufRead meta-data set ft=yaml
-au bufnewfile,bufRead *.ddl set ft=sql
-au bufnewfile,bufRead keg set ft=yaml
 au bufnewfile,bufRead *.bash* set ft=bash
-au bufnewfile,bufRead *.{peg,pegn} set ft=config
-au bufnewfile,bufRead *.gotmpl set ft=go
 au bufnewfile,bufRead *.profile set filetype=sh
 au bufnewfile,bufRead *.crontab set filetype=crontab
 au bufnewfile,bufRead *ssh/config set filetype=sshconfig
 au bufnewfile,bufRead .dockerignore set filetype=gitignore
 au bufnewfile,bufRead *gitconfig set filetype=gitconfig
-au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
 au bufnewfile,bufRead *.go set spell spellcapcheck=0
-au bufnewfile,bufRead commands.yaml set spell
 au bufnewfile,bufRead *.txt set spell
 au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80 colorcolumn=81 smarttab expandtab
 au bufnewfile,bufRead *.tsv set autoindent noexpandtab copyindent preserveindent softtabstop=0 tabstop=4 shiftwidth=4
