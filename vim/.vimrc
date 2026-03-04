@@ -290,6 +290,16 @@ au bufnewfile,bufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=80
 au bufnewfile,bufRead *.tsv set autoindent noexpandtab copyindent preserveindent softtabstop=0 tabstop=4 shiftwidth=4
 
 " Zettelkasten specific configs
+" Zotero Interface
+nnoremap <leader>z :execute '!xdg-open "zotero://select/items/bbt:' . expand('<cword>') . '"'<CR>
+
+" Insert Zotero citation with <Leader>z
+inoremap <Leader>x <C-r>=system('curl -s http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc')<CR>
+nnoremap <Leader>x a<C-r>=system('curl -s http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc')<CR><Esc>
+
+
+
+
 " Visual mode: wrap the selected text as a Markdown link to a Cortex node.
 xnoremap <leader>l :<C-u>call CortexLinkVisual()<CR>
 
