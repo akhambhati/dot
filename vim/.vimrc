@@ -297,7 +297,100 @@ nnoremap <leader>z :execute '!xdg-open "zotero://select/items/bbt:' . expand('<c
 inoremap <Leader>x <C-r>=system('curl -s http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc')<CR>
 nnoremap <Leader>x a<C-r>=system('curl -s http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc')<CR><Esc>
 
+" Pick a citation with Better BibTeX CAYW, insert it, then append annotations.
+" Requires:
+"   - Zotero running
+"   - Better BibTeX installed
+"   - curl available
+"   - Vim/Neovim with json_decode()
 
+function! ZoteroCiteAndAnnotations() abort
+  " 1) Pop up Better BibTeX Cite-As-You-Write picker and get a pandoc citation
+  let l:cite = trim(system(
+        \ "curl -fsS 'http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc&brackets=1'"
+        \ ))
+
+  if v:shell_error || empty(l:cite)
+    return ''
+  endif
+
+  " 2) Extract first citekey from something like [@smith2024]
+  "    or [see @smith2024, pp. 10-12]
+  let l:key = matchstr(l:cite, '@\zs[^][,; )]\+')
+  if empty(l:key)
+    return l:cite
+  endif
+
+  " 3) Ask Better BibTeX JSON-RPC for attachments + annotations
+  let l:payload = json_encode({
+        \ 'jsonrpc': '2.0',
+        \ 'method': 'item.attachments',
+        \ 'params': [l:key, '*'],
+        \ 'id': 1
+        \ })
+
+  let l:raw = system(
+        \ 'curl -fsS http://127.0.0.1:23119/better-bibtex/json-rpc ' .
+        \ "-H 'Content-Type: application/json' " .
+        \ "-H 'Accept: application/json' " .
+        \ '--data-binary ' . shellescape(l:payload)
+        \ )
+
+  if v:shell_error || empty(l:raw)
+    return l:cite
+  endif
+
+  try
+    let l:resp = json_decode(l:raw)
+  catch
+    return l:cite
+  endtry
+
+  if type(l:resp) != type({}) || has_key(l:resp, 'error') || !has_key(l:resp, 'result')
+    return l:cite
+  endif
+
+  " 4) Format annotations
+  let l:ann_lines = []
+
+  for l:att in l:resp.result
+    if !has_key(l:att, 'annotations')
+      continue
+    endif
+
+    for l:ann in l:att.annotations
+      let l:text    = substitute(get(l:ann, 'text', ''), '\_s\+', ' ', 'g')
+      let l:comment = substitute(get(l:ann, 'comment', ''), '\_s\+', ' ', 'g')
+      let l:page    = get(l:ann, 'pageLabel', '?')
+
+      if empty(l:text) && empty(l:comment)
+        continue
+      endif
+
+      if empty(l:comment)
+        call add(l:ann_lines, '- p.' . l:page . ': ' . l:text)
+      elseif empty(l:text)
+        call add(l:ann_lines, '- p.' . l:page . ': ' . l:comment)
+      else
+        call add(l:ann_lines, '- p.' . l:page . ': ' . l:text . ' — ' . l:comment)
+      endif
+    endfor
+  endfor
+
+  " 5) Return citation only if no annotations were found
+  if empty(l:ann_lines)
+    return l:cite
+  endif
+
+  " Add a blank line between citation and extracted annotations
+  return l:cite . "\n" . join(l:ann_lines, "\n")
+endfunction
+
+" Insert-mode shortcut
+inoremap <silent><expr> <C-z> ZoteroCiteAndAnnotations()
+
+" Normal-mode shortcut
+nnoremap <silent> <leader>za i<C-r>=ZoteroCiteAndAnnotations()<CR><Esc>
 
 
 " Visual mode: wrap the selected text as a Markdown link to a Cortex node.
