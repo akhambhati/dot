@@ -32,6 +32,10 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
 output * bg /usr/share/backgrounds/default.jxl fill
+output eDP-1 enable position 0 0 mode 1920x1200@165Hz adaptive_sync on
+output DP-4 enable position 1920 -1200 mode 2560x1440@60Hz adaptive_sync on scale 1.0
+output DP-5 enable position 4480 -1200 mode 2560x1440@60Hz adaptive_sync on scale 1.0 transform 90
+
 #
 # Example configuration:
 #
